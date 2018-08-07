@@ -1,0 +1,18 @@
+<div class="notifications-wrapper toast-bottom-right">
+    <div class="notification-toast" *ngFor="let notification of notifications" [ngClass]="{'bounceInUp': !notification.closing, 'bounceOutDown': notification.closing}"
+         [class]="notification.level">
+        <div class="notification-toast-header">
+            <!-- Close icon -->
+            <h5 class="text-center font-weight-normal"> {{notification.data.title}}</h5>
+            <i class="fa fa-lg fa-times icon-close" (click)="removeNotification(notification)"></i>
+        </div>
+        <div class="notification-toast-body">
+          <h5 class="text-center font-weight-normal"> {{notification.data.parameters.currentAllumettesRemoved}} removed</h5>
+        </div>
+        <div class="toast-footer">
+            <!-- Time -->
+            <div class="time">{{ getRelativeTime(notification.timestamp) }}</div>
+            <!-- Time -->
+        </div>
+    </div>
+</div>

@@ -1,0 +1,18 @@
+.welcome-screen {
+  text-align: center;
+  margin: 0 auto;
+  width: 350px;
+  h1 {
+    font-size: 20px;
+    text-transform: uppercase;
+  }
+  .welcome-screen-cnt {
+    margin-top : 100px;
+    .welcome-screen-menu {
+      margin-top: 30px;
+      .btn {
+        margin-right : 10px;
+      }
+    }
+  }
+}

@@ -1,0 +1,34 @@
+<div class="row allumettes-game">
+    <h3>Un petit jeu d'allumettes</h3>
+
+    <div class="col-sm-12">
+        <ol>Celui qui prend la dernière allumette gagne la partie !</ol>
+        <ul class="allumettes-list">
+            <li *ngFor="let number of lodash.range(allumettesNb)">
+                <img src="http://championmath.free.fr/allumon.gif" name="number">
+            </li>
+        </ul>
+    </div>
+    <div class="col-sm-12 allumettes-options">
+        <span>Combien prenez-vous d'allumettes ?</span>
+        <button class="btn btn-xs btn-success" (click)="userPlay(1)">1</button>
+        <button class="btn btn-xs btn-success" (click)="userPlay(2)">2</button>
+        <button class="btn btn-xs btn-success" (click)="userPlay(3)">3</button>
+    </div>
+    <div class="col-xs-12">
+        <button class="btn btn-sm back-to-home btn-danger" (click)="backToHome()">back to homePage</button>
+    </div>
+    <div class="lock-screen row align-items-center" [hidden]="!(gameOver | async)" [ngClass]="{'win': (currentPlayer | async) == 'player', 'defeat': (currentPlayer | async) == 'cpu'}">
+        <div class="lock-screen-cnt">
+            <h1>{{(currentPlayer | async)}} Win </h1>
+            <ul>
+                <ol>Statistics :</ol>
+                <li>number move : 4</li>
+                <li>number game win : 5</li>
+            </ul>
+            <div class="col-xs-12">
+                <button class="btn btn-xs btn-success" (click)="resetGame()">Play again</button>
+            </div>
+        </div>
+    </div>
+</div>

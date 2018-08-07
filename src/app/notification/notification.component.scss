@@ -1,0 +1,191 @@
+$toaster-default: #030303 !default;
+$toaster-success: #00e094 !default;
+$toaster-error:#dc3545;
+$toaster-info: #17a2b8 !default;
+$toaster-wait: #17a2b8 !default;
+$toaster-warning: #ffc107 !default;
+@mixin toast-notification ($bg-color) {
+  .img-wrapper {
+    color: white;
+  }
+  .icon-close,
+  {
+    color: transparentize(white, 0.3);
+  }
+  background: $bg-color;
+  .toast-header,
+  .toast-progress {
+    background: darken($bg-color, 10%);
+  }
+}
+
+@keyframes bounceInUp {
+  from,
+  60%,
+  75%,
+  90%,
+  to {
+    animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+  }
+  from {
+    opacity: 0;
+    transform: translate3d(0, 3000px, 0);
+  }
+  60% {
+    opacity: 1;
+    transform: translate3d(0, -20px, 0);
+  }
+  75% {
+    transform: translate3d(0, 10px, 0);
+  }
+  90% {
+    transform: translate3d(0, -5px, 0);
+  }
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes bounceOutDown {
+  20% {
+    transform: translate3d(0, 10px, 0);
+  }
+  40%,
+  45% {
+    opacity: 1;
+    transform: translate3d(0, -20px, 0);
+  }
+  to {
+    opacity: 0;
+    transform: translate3d(0, 2000px, 0);
+  }
+}
+
+.bounceOutDown {
+  animation-name: bounceOutDown;
+  animation-duration: 1000ms;
+}
+
+.bounceInUp {
+  animation-name: bounceInUp;
+  animation-duration: 1000ms;
+}
+
+.notifications-wrapper {
+  position: fixed;
+  z-index: 50000;
+  width: 80%;
+  &.toast-top {
+    top: 0;
+    &-left {
+      @extend .toast-top;
+      left: 0;
+    }
+    &-center {
+      @extend .toast-top;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    &-right {
+      @extend .toast-top;
+      right: -50%;
+    }
+  }
+  &.toast-middle {
+    top: 50%;
+    transform: translateY(-50%);
+    &-left {
+      @extend .toast-middle;
+      left: 0;
+    }
+    &-center {
+      @extend .toast-middle;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    &-right {
+      @extend .toast-middle;
+      right: -50%;
+    }
+  }
+  &.toast-bottom {
+    bottom: 0;
+    &-left {
+      @extend .toast-bottom;
+      left: 0;
+    }
+    &-center {
+      @extend .toast-bottom;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    &-right {
+      @extend .toast-bottom;
+      right: -50%;
+    }
+  }
+  .notification-toast {
+    position: relative;
+    margin: .5rem;
+    border-radius: 0.2rem;
+    &-header {
+      display: flex;
+      align-items: center;
+      padding: 0.5rem;
+    }
+    &-body {
+      // display: flex;
+      padding: 0.5rem;
+      .img-wrapper {
+        width: 25%;
+        height: 25%
+      }
+    }
+    .icon-close {
+      cursor: pointer;
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+    }
+    .time {
+      flex: 0 0 auto;
+      text-align: right;
+      padding: 0.5rem;
+    }
+    @media (min-width: 855px) {
+      width: 75%;
+    }
+    @media (min-width: 992px) {
+      width: 50%;
+    }
+    @media (min-width: 1200px) {
+      width: 33%;
+    }
+    &.success,
+    &.normal,
+    &.ok,
+    &.available {
+      @include toast-notification($toaster-success);
+    }
+    &,
+    &.default,
+    &.info {
+      @include toast-notification($toaster-info);
+    }
+    &.warning,
+    &.warn {
+      @include toast-notification($toaster-warning);
+    }
+    &.medium,
+    &.major {
+      @include toast-notification($toaster-warning);
+    }
+    &.danger,
+    &.error,
+    &.critical,
+    &.high {
+      @include toast-notification($toaster-error);
+    }
+  }
+}
+
